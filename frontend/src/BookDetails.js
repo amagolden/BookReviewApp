@@ -30,10 +30,15 @@ function BookDetails({ book }) {
 
 		try {
 			// TODO: Post the review to the backend using axios
-			await axios.post(`http://localhost:4000/books/${book._id}/reviews`, { review });
+			await axios.post(`http://localhost:4000/books/${book._id}/reviews`, 
+				{ review }
+			);
 
 			// TODO: Update the details state to include the new review
-			setDetails(prevDetails => [...prevDetails.reviews,review]);
+			setDetails((prevDetails) => ({
+				...prevDetails,
+				reviews: [...prevDetails.reviews, review],
+			  }));
 
 			// TODO: Clear the review input and set a success message
 			setReview('');

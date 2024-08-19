@@ -2,8 +2,8 @@ const express = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
 const router = express.Router();
 
-const mongoUrl = "mongodb+srv://amagolden:<password>@cluster0.mrmoj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const dbName = "Cluster 0";
+const mongoUrl = "mongodb://localhost:27017";
+const dbName = "bookReviewsApp";
 
 async function connectToDB() {
   const client = await MongoClient.connect(mongoUrl);
@@ -47,7 +47,10 @@ router.post("/:id/reviews", async (req, res) => {
   } else {
     // TODO: Update the specified book with the new review
     // Hint: Use the $push operator to add the review to the reviews array
-    const updateResult = await collection.updateOne({ _id: new ObjectId(req.params.id) }, { $push: { reviews: review } });
+    const updateResult = await collection.updateOne(
+      { _id: new ObjectId(req.params.id) }, 
+      { $push: { reviews: review } }
+    );
     // TODO: Check if the book was found and updated, respond accordingly
     if (updateResult.matchedCount === 0) { 
       res.status(404).send("Book not found"); 

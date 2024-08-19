@@ -1,7 +1,7 @@
 const { MongoClient } = require("mongodb");
 
-const mongoUrl = "mongodb+srv://amagolden:<password>@cluster0.mrmoj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const dbName = "Cluster 0";
+const mongoUrl = "mongodb://localhost:27017";
+const dbName = "bookReviewsApp";
 const client = new MongoClient(mongoUrl);
 
 async function seedDB() {
